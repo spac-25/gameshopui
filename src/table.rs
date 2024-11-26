@@ -49,7 +49,7 @@ impl TableEntry {
 
         trees.into_iter()
             .map(|mut tree| {
-                if let Some(leaves) = tree.pop_outer_leaves() {;
+                if let Some(leaves) = tree.pop_outer_leaves() {
                     TableEntry::Family { base: tree.node, leaves }
                 }
                 else {
