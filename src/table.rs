@@ -22,6 +22,7 @@ pub struct TableColumn {
 pub struct Table {
     pub name: String,
     pub table: String,
+    pub polymorphic: Option<String>,
     pub columns: Vec<TableColumn>,
 }
 
@@ -57,6 +58,13 @@ impl TableEntry {
                 }
             })
             .collect()
+    }
+
+    pub fn get_base(&self) -> &Table {
+        match self {
+            TableEntry::Single(table) => table,
+            TableEntry::Family { base, leaves: _ } => base,
+        }
     }
 }
 
